@@ -23,11 +23,13 @@ jobs:
         with:
           channel: stable
 
+      
       - name: Create Flutter project if needed
         run: |
-          if [ ! -f pubspec.yaml ]; then
-            flutter create --org com.example --project-name my_flutter_app .
+          if [ ! -d android ] || [ ! -f android/gradlew ]; then
+            flutter create --platforms=android --org com.example --project-name my_flutter_app .
           fi
+
 
       - name: Get dependencies
         run: flutter pub get
